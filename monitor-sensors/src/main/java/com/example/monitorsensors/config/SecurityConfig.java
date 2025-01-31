@@ -28,12 +28,13 @@ public class SecurityConfig {
     private static final String MEASUREMENT_UNITS_URL = "/measurement-units/**";
 	
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
         .csrf(csrf -> csrf.disable()) // Disabling CSRF for the REST API
         .sessionManagement(session -> session.sessionCreationPolicy(STATELESS)) // without session
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/auth/**").permitAll() // without authorization
+            .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/v3/api-docs.yaml").permitAll()
             .requestMatchers(HttpMethod.GET, SENSORS_URL).hasAnyRole(ROLE_ADMIN, ROLE_VIEWER) 
             .requestMatchers(HttpMethod.POST, SENSORS_URL).hasRole(ROLE_ADMIN) 
             .requestMatchers(HttpMethod.PUT, SENSORS_URL).hasRole(ROLE_ADMIN) 
@@ -47,12 +48,12 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 	
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) 
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) 
 			throws Exception {
 	    return authenticationConfiguration.getAuthenticationManager();
 	}
