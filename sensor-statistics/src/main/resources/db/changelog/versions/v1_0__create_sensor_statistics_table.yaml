@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-sensor-statistics
+      author: user
+      changes:
+        - createTable:
+            tableName: sensor_statistics
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_sensors
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: temperature_sensors
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pressure_sensors
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: humidity_sensors
+                  type: INTEGER
+                  constraints:
+                    nullable: false

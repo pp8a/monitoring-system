@@ -1,0 +1,52 @@
+name: sensor-statistics
+
+networks:
+  monitor-network:
+    name: monitor-network
+    driver: bridge  
+
+services:
+  # База данных для статистики
+  postgres-stat:
+    image: postgres:latest
+    container_name: postgres-stat-db
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: sensor_statistics
+    volumes:
+      - postgres_stat_data:/var/lib/postgresql/data
+    networks:
+      - monitor-network      
+
+  # Сервис статистики
+  sensor-statistics-app:
+    image: sensor-statistics-app:latest
+    container_name: sensor-statistics-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-stat:5432/sensor_statistics
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_LIQUIBASE_ENABLED: true  
+      SPRING_LIQUIBASE_CHANGE-LOG: classpath:db/changelog/db.changelog-master.yaml
+      
+      # URL и учетные данные для доступа к monitor-sensors
+      MONITOR_SENSORS_URL: http://monitor-sensors-app:8080
+      MONITOR_SENSORS_USERNAME: admin
+      MONITOR_SENSORS_PASSWORD: admin
+    depends_on:
+      - postgres-stat
+    networks:
+      - monitor-network     
+
+volumes:
+  postgres_stat_data: {}

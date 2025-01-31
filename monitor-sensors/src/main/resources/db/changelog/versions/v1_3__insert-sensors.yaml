@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-sensors
+      author: user
+      changes:
+        - insert:
+            tableName: sensor
+            columns:
+              - column:
+                  name: name
+                  value: "Temperature Sensor"
+              - column:
+                  name: model
+                  value: "T-1000"
+              - column:
+                  name: type
+                  value: 3  # ID из sensor_type (Temperature)
+              - column:
+                  name: unit
+                  value: 3  # ID из measurement_unit (°C)
+              - column:
+                  name: range_from
+                  value: -50
+              - column:
+                  name: range_to
+                  value: 100
+              - column:
+                  name: location
+                  value: "Warehouse 1"
+              - column:
+                  name: description
+                  value: "Monitors temperature in the warehouse"
+
+        - insert:
+            tableName: sensor
+            columns:
+              - column:
+                  name: name
+                  value: "Pressure Sensor"
+              - column:
+                  name: model
+                  value: "P-500"
+              - column:
+                  name: type
+                  value: 1  # ID из sensor_type (Pressure)
+              - column:
+                  name: unit
+                  value: 1  # ID из measurement_unit (bar)
+              - column:
+                  name: range_from
+                  value: 10
+              - column:
+                  name: range_to
+                  value: 500
+              - column:
+                  name: location
+                  value: "Compressor Room"
+              - column:
+                  name: description
+                  value: "Monitors air pressure"
+
+        - insert:
+            tableName: sensor
+            columns:
+              - column:
+                  name: name
+                  value: "Humidity Sensor"
+              - column:
+                  name: model
+                  value: "H-200"
+              - column:
+                  name: type
+                  value: 4  # ID из sensor_type (Humidity)
+              - column:
+                  name: unit
+                  value: 4  # ID из measurement_unit (%)
+              - column:
+                  name: range_from
+                  value: 0
+              - column:
+                  name: range_to
+                  value: 100
+              - column:
+                  name: location
+                  value: "Laboratory"
+              - column:
+                  name: description
+                  value: "Monitors humidity levels"
+
+        - insert:
+            tableName: sensor
+            columns:
+              - column:
+                  name: name
+                  value: "Voltage Sensor"
+              - column:
+                  name: model
+                  value: "V-300"
+              - column:
+                  name: type
+                  value: 2  # ID из sensor_type (Voltage)
+              - column:
+                  name: unit
+                  value: 2  # ID из measurement_unit (voltage)
+              - column:
+                  name: range_from
+                  value: 0
+              - column:
+                  name: range_to
+                  value: 400
+              - column:
+                  name: location
+                  value: "Power Supply Room"
+              - column:
+                  name: description
+                  value: "Monitors voltage levels"

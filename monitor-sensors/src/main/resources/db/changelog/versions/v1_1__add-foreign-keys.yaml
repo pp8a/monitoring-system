@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-sensor-types-and-units
+      author: user
+      changes:
+        - createTable:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+        - createTable:
+            tableName: measurement_unit
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+
+  - changeSet:
+      id: add-foreign-keys
+      author: user
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: sensor
+            baseColumnNames: type
+            referencedTableName: sensor_type
+            referencedColumnNames: id
+            constraintName: fk_sensor_type
+        - addForeignKeyConstraint:
+            baseTableName: sensor
+            baseColumnNames: unit
+            referencedTableName: measurement_unit
+            referencedColumnNames: id
+            constraintName: fk_sensor_unit

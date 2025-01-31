@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: monitor-sensors
+  datasource:
+    url: jdbc:postgresql://localhost:5432/monitor_sensors
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml 
+
+server:
+  port: 8080
+  

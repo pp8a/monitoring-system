@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-default-sensor-types
+      author: user
+      changes:
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: "Pressure"
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: "Voltage"
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: "Temperature"
+        - insert:
+            tableName: sensor_type
+            columns:
+              - column:
+                  name: name
+                  value: "Humidity"
+
+  - changeSet:
+      id: insert-default-measurement-units
+      author: user
+      changes:
+        - insert:
+            tableName: measurement_unit
+            columns:
+              - column:
+                  name: name
+                  value: "bar"
+        - insert:
+            tableName: measurement_unit
+            columns:
+              - column:
+                  name: name
+                  value: "voltage"
+        - insert:
+            tableName: measurement_unit
+            columns:
+              - column:
+                  name: name
+                  value: "°C"
+        - insert:
+            tableName: measurement_unit
+            columns:
+              - column:
+                  name: name
+                  value: "%"
+
+  - changeSet:
+      id: insert-predefined-users
+      author: user
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$w5/ZRJ2r/1C0ZRrPK0bgPuuy/sEOJXkiIAs4blkyVnobmiG2c24h2"  # Хеш пароля admin
+              - column:
+                  name: role
+                  value: "Administrator"
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: "user"
+              - column:
+                  name: password
+                  value: "$2a$10$C18ASIx5EXvVLYhT3gfCMew.B6FGDlpbIXnUFHqj6kj2Kd0C9pwYe"  # Хеш пароля user
+              - column:
+                  name: role
+                  value: "Viewer"

@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: user
+      changes:
+        - createTable:
+            tableName: sensor
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model
+                  type: VARCHAR(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: unit
+                  type: INTEGER
+              - column:
+                  name: range_from
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: range_to
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: VARCHAR(40)
+              - column:
+                  name: description
+                  type: VARCHAR(200)
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false

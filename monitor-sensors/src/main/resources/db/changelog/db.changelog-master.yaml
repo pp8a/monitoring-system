@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/versions/v1_0__initial-setup.yaml
+  - include:
+      file: db/changelog/versions/v1_1__add-foreign-keys.yaml
+  - include:
+      file: db/changelog/versions/v1_2__insert-initial-data.yaml
+  - include:
+      file: db/changelog/versions/v1_3__insert-sensors.yaml      
